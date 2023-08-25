@@ -1,0 +1,18 @@
+// @ts-check
+import playwright from "playwright";
+const { test } = require("@playwright/test");
+test("Emulates Mobile Safari on a device at given geolocation, navigates to maps.google.com, performs action and takes a screensho", async () => {
+  const { chromium, devices } = playwright;
+  const pixel5 = devices["Pixel 5"];
+  const browser = await chromium.launch();
+  const context = await browser.newContext({
+    ...pixel5,
+    geolocation: { longitude: 12.492507, latitude: 41.889938 },
+    permissions: ["geolocation"],
+  });
+  const page = await context.newPage();
+  await page.goto("https://www.openstreetmap.org");
+  await page.locator('[aria-label="Show My Location"]').click();
+  await page.screenshot({ path: "colosseum-iphone.png" });
+  await browser.close();
+});

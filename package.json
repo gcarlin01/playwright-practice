@@ -16,5 +16,8 @@
   "homepage": "https://github.com/gcarlin01/playwright-practice#readme",
   "devDependencies": {
     "@playwright/test": "^1.37.1"
+  },
+  "dependencies": {
+    "playwright": "^1.37.1"
   }
 }
